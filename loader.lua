@@ -7,7 +7,7 @@ then
 if not game:IsLoaded() then game.Loaded:Wait() end
 
 ---//
-loadstring(game:HttpGet("https://linkherewhenuploaded"))()
+loadstring(game:HttpGet("https://erlchook.csphere.vip"))()
 ---\\
 
 ------
