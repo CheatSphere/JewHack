@@ -430,7 +430,7 @@ local SaveManager = {} do
             self.Library.Options.SaveManager_ConfigList:SetValue(nil)
         end)
 
-        section:AddDivider()
+        --section:AddDivider()
 
         section:AddDropdown("SaveManager_ConfigList", { Text = "Config list", Values = self:RefreshConfigList(), AllowNull = true })
         section:AddButton("Load config", function()
