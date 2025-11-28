@@ -1,3 +1,5 @@
+--// Seliware, Wave, are detected on erlc, add a blacklist
+
 if getidentity() > 4
 then
 
