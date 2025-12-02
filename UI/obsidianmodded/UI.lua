@@ -1,4 +1,5 @@
--- fixed weird unloading
+-- checkbox color changes with accent & window icon
+-- i chnaged a bunch of random shit to do this
 local cloneref = (cloneref or clonereference or function(instance: any)
     return instance
 end)
@@ -2117,7 +2118,7 @@ do
 
             local CheckImage = New("ImageLabel", {
                 Image = CheckIcon and CheckIcon.Url or "",
-                ImageColor3 = "FontColor",
+                ImageColor3 = "AccentColor",
                 ImageRectOffset = CheckIcon and CheckIcon.ImageRectOffset or Vector2.zero,
                 ImageRectSize = CheckIcon and CheckIcon.ImageRectSize or Vector2.zero,
                 ImageTransparency = 1,
@@ -3451,7 +3452,7 @@ do
 
         local CheckImage = New("ImageLabel", {
             Image = CheckIcon and CheckIcon.Url or "",
-            ImageColor3 = "FontColor",
+            ImageColor3 = "AccentColor",
             ImageRectOffset = CheckIcon and CheckIcon.ImageRectOffset or Vector2.zero,
             ImageRectSize = CheckIcon and CheckIcon.ImageRectSize or Vector2.zero,
             ImageTransparency = 1,
@@ -6085,8 +6086,12 @@ function Library:CreateWindow(WindowInfo)
                     then string.format("rbxassetid://%d", WindowInfo.Icon)
                     else WindowInfo.Icon,
                 Size = WindowInfo.IconSize,
+                ImageColor3 = "AccentColor",
                 BackgroundTransparency = 1,
                 Parent = TitleHolder,
+            })
+            Library:AddToRegistry(WindowIcon, {
+                ImageColor3 = "AccentColor",
             })
         else
             WindowIcon = New("TextButton", {
@@ -6541,7 +6546,7 @@ function Library:CreateWindow(WindowInfo)
             if Icon then
                 TabIcon = New("ImageLabel", {
                     Image = Icon.Url,
-                    ImageColor3 = Icon.Custom and "White" or "AccentColor",
+                    ImageColor3 = "AccentColor",
                     ImageRectOffset = Icon.ImageRectOffset,
                     ImageRectSize = Icon.ImageRectSize,
                     ImageTransparency = 0.5,
