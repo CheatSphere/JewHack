@@ -56,17 +56,17 @@ do
             2,
             { FontColor = "ffffff", MainColor = "1a1a1d", AccentColor = "9fbaff", BackgroundColor = "0d0d0f", OutlineColor = "26262b" },
         },
-        ["Monokai"] = {
+        ["DefaultPurple"] = {
             3,
-            { FontColor = "f8f8f2", MainColor = "272822", AccentColor = "f92672", BackgroundColor = "1e1f1c", OutlineColor = "49483e" },
+            { FontColor = "ffffff", MainColor = "1c1a1d", AccentColor = "c99fff", BackgroundColor = "0e0d0f", OutlineColor = "28262b" },
         },
         ["OldDefault"] = {
             4,
             { FontColor = "ffffff", MainColor = "161616", AccentColor = "c7e9ff", BackgroundColor = "0a0a0a", OutlineColor = "232323" },
         },
-        ["Material"] = {
+        ["Cherry"] = {
             5,
-            { FontColor = "eeffff", MainColor = "212121", AccentColor = "82aaff", BackgroundColor = "151515", OutlineColor = "424242" },
+            { FontColor = "eeffff", MainColor = "212121", AccentColor = "ffc2c2", BackgroundColor = "151515", OutlineColor = "2d2d2d" },
         }
     }
 
@@ -286,14 +286,14 @@ do
     --// GUI \\--
     function ThemeManager:CreateThemeManager(groupbox)
         groupbox
-            :AddLabel("Background color")
+            :AddLabel("Background Color")
             :AddColorPicker("BackgroundColor", { Default = self.Library.Scheme.BackgroundColor })
-        groupbox:AddLabel("Main color"):AddColorPicker("MainColor", { Default = self.Library.Scheme.MainColor })
-        groupbox:AddLabel("Accent color"):AddColorPicker("AccentColor", { Default = self.Library.Scheme.AccentColor })
+        groupbox:AddLabel("Main Color"):AddColorPicker("MainColor", { Default = self.Library.Scheme.MainColor })
+        groupbox:AddLabel("Accent Color"):AddColorPicker("AccentColor", { Default = self.Library.Scheme.AccentColor })
         groupbox
-            :AddLabel("Outline color")
+            :AddLabel("Outline Color")
             :AddColorPicker("OutlineColor", { Default = self.Library.Scheme.OutlineColor })
-        groupbox:AddLabel("Font color"):AddColorPicker("FontColor", { Default = self.Library.Scheme.FontColor })
+        groupbox:AddLabel("Font Color"):AddColorPicker("FontColor", { Default = self.Library.Scheme.FontColor })
 
         local ThemesArray = {}
         for Name, Theme in pairs(self.BuiltInThemes) do
@@ -306,7 +306,7 @@ do
 
         --groupbox:AddDivider()
 
-        groupbox:AddDropdown("ThemeManager_ThemeList", { Text = "Theme list", Values = ThemesArray, Default = 1 })
+        groupbox:AddDropdown("ThemeManager_ThemeList", { Text = "Theme List", Values = ThemesArray, Default = 1 })
         groupbox:AddButton("Set as default", function()
             self:SaveDefault(self.Library.Options.ThemeManager_ThemeList.Value)
             self.Library:Notify(
@@ -320,7 +320,7 @@ do
 
         --groupbox:AddDivider()
 
-        groupbox:AddInput("ThemeManager_CustomThemeName", { Text = "Custom theme name" })
+        groupbox:AddInput("ThemeManager_CustomThemeName", { Text = "Custom Theme Name" })
         groupbox:AddButton("Create theme", function()
             local name = self.Library.Options.ThemeManager_CustomThemeName.Value
 
@@ -340,21 +340,21 @@ do
 
         groupbox:AddDropdown(
             "ThemeManager_CustomThemeList",
-            { Text = "Custom themes", Values = self:ReloadCustomThemes(), AllowNull = true, Default = 1 }
+            { Text = "Custom Themes", Values = self:ReloadCustomThemes(), AllowNull = true, Default = 1 }
         )
-        groupbox:AddButton("Load theme", function()
+        groupbox:AddButton("Load Theme", function()
             local name = self.Library.Options.ThemeManager_CustomThemeList.Value
 
             self:ApplyTheme(name)
             self.Library:Notify(string.format("Loaded theme %q", name))
         end)
-        groupbox:AddButton("Overwrite theme", function()
+        groupbox:AddButton("Overwrite Theme", function()
             local name = self.Library.Options.ThemeManager_CustomThemeList.Value
 
             self:SaveCustomTheme(name)
             self.Library:Notify(string.format("Overwrote config %q", name))
         end)
-        groupbox:AddButton("Delete theme", function()
+        groupbox:AddButton("Delete Theme", function()
             local name = self.Library.Options.ThemeManager_CustomThemeList.Value
 
             local success, err = self:Delete(name)
@@ -367,11 +367,11 @@ do
             self.Library.Options.ThemeManager_CustomThemeList:SetValues(self:ReloadCustomThemes())
             self.Library.Options.ThemeManager_CustomThemeList:SetValue(nil)
         end)
-        groupbox:AddButton("Refresh list", function()
+        groupbox:AddButton("Refresh List", function()
             self.Library.Options.ThemeManager_CustomThemeList:SetValues(self:ReloadCustomThemes())
             self.Library.Options.ThemeManager_CustomThemeList:SetValue(nil)
         end)
-        groupbox:AddButton("Set as default", function()
+        groupbox:AddButton("Set as Default", function()
             if
                 self.Library.Options.ThemeManager_CustomThemeList.Value ~= nil
                 and self.Library.Options.ThemeManager_CustomThemeList.Value ~= ""
@@ -382,7 +382,7 @@ do
                 )
             end
         end)
-        groupbox:AddButton("Reset default", function()
+        groupbox:AddButton("Reset Default", function()
             local success = pcall(delfile, self.Folder .. "/themes/default.txt")
             if not success then
                 self.Library:Notify("Failed to reset default: delete file error")
