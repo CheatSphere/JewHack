@@ -1,4 +1,4 @@
--- theme changes (default)
+-- theme changes2 (default)
 local cloneref = (cloneref or clonereference or function(instance: any)
     return instance
 end)
@@ -50,18 +50,22 @@ do
     ThemeManager.BuiltInThemes = {
         ["Default"] = {
             1,
+            { FontColor = "ffffff", MainColor = "1d1c1a", AccentColor = "ffddb9", BackgroundColor = "0f0e0d", OutlineColor = "2b2926" },
+        },
+        ["DefaultBlue"] = {
+            2,
             { FontColor = "ffffff", MainColor = "1a1a1d", AccentColor = "9fbaff", BackgroundColor = "0d0d0f", OutlineColor = "26262b" },
         },
         ["Monokai"] = {
-            2,
+            3,
             { FontColor = "f8f8f2", MainColor = "272822", AccentColor = "f92672", BackgroundColor = "1e1f1c", OutlineColor = "49483e" },
         },
         ["OldDefault"] = {
-            3,
+            4,
             { FontColor = "ffffff", MainColor = "161616", AccentColor = "c7e9ff", BackgroundColor = "0a0a0a", OutlineColor = "232323" },
         },
         ["Material"] = {
-            4,
+            5,
             { FontColor = "eeffff", MainColor = "212121", AccentColor = "82aaff", BackgroundColor = "151515", OutlineColor = "424242" },
         }
     }
