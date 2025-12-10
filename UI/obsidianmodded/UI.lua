@@ -1,4 +1,4 @@
---// Window:SetSidebarWidth(num) remove when switching to this one from old
+--// Window:SetSidebarWidth(135) remove when switching to this one
 --// line 6132 is the window icon/title shit
 --// line 6000 controls tab stuff when changing, i left understandable notes dont just blindly change
 
@@ -7761,6 +7761,7 @@ Library:GiveSignal(Teams.ChildAdded:Connect(OnTeamChange))
 Library:GiveSignal(Teams.ChildRemoved:Connect(OnTeamChange))
 
 getgenv().Library = Library
+return Library
 
 
 ---------------------------------------
