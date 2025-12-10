@@ -1,4 +1,4 @@
---// Window:SetSidebarWidth(135) remove when switching to this one
+--// Window:SetSidebarWidth(num) remove when switching to this one from old
 --// line 6132 is the window icon/title shit
 --// line 6000 controls tab stuff when changing, i left understandable notes dont just blindly change
 
@@ -117,7 +117,7 @@ local ObsidianImageManager = {
     },
 }
 do
-    local BaseURL = "https://raw.githubusercontent.com/deividcomsono/Obsidian/refs/heads/main/" 
+    local BaseURL = "https://raw.githubusercontent.com/CheatSphere/ERLChook/refs/heads/main/UI/obsidianmodded/images/" 
     -- https://raw.githubusercontent.com/deividcomsono/Obsidian/refs/heads/main/
     -- https://raw.githubusercontent.com/CheatSphere/ERLChook/refs/heads/main/UI/obsidianmodded/images/
 
@@ -7761,7 +7761,7 @@ Library:GiveSignal(Teams.ChildAdded:Connect(OnTeamChange))
 Library:GiveSignal(Teams.ChildRemoved:Connect(OnTeamChange))
 
 getgenv().Library = Library
-return Library
+
 
 ---------------------------------------
 ---------------------------------------
