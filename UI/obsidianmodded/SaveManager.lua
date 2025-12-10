@@ -39,7 +39,7 @@ if typeof(clonefunction) == "function" then
 end
 
 local SaveManager = {} do
-    SaveManager.Folder = "ERLChook"
+    SaveManager.Folder = "DropHook"
     SaveManager.SubFolder = ""
     SaveManager.Ignore = {}
     SaveManager.Library = nil
