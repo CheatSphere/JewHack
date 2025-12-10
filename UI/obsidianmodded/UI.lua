@@ -1,4 +1,4 @@
---// Window:SetSidebarWidth(135) remove when switching to this one
+--// Window:SetSidebarWidth(num) remove when switching to this one
 --// line 6132 is the window icon/title shit
 --// line 6000 controls tab stuff when changing, i left understandable notes dont just blindly change
 
@@ -103,23 +103,23 @@ local ObsidianImageManager = {
     Assets = {
         TransparencyTexture = {
             RobloxId = 139785960036434,
-            Path = "ERLChook/assets/TransparencyTexture.png",
+            Path = "DropHook/assets/TransparencyTexture.png",
 
             Id = nil,
         },
 
         SaturationMap = {
             RobloxId = 4155801252,
-            Path = "ERLChook/assets/SaturationMap.png",
+            Path = "DropHook/assets/SaturationMap.png",
 
             Id = nil,
         },
     },
 }
 do
-    local BaseURL = "https://raw.githubusercontent.com/CheatSphere/ERLChook/refs/heads/main/UI/obsidianmodded/images/" 
+    local BaseURL = "https://raw.githubusercontent.com/CheatSphere/DropHook/refs/heads/main/UI/obsidianmodded/images/" 
     -- https://raw.githubusercontent.com/deividcomsono/Obsidian/refs/heads/main/
-    -- https://raw.githubusercontent.com/CheatSphere/ERLChook/refs/heads/main/UI/obsidianmodded/images/
+    -- https://raw.githubusercontent.com/CheatSphere/DropHook/refs/heads/main/UI/obsidianmodded/images/
 
     local function RecursiveCreatePath(Path: string, IsFile: boolean?)
         if not isfolder or not makefolder then
@@ -179,7 +179,7 @@ do
             return
         end
 
-        local URLPath = AssetPath:gsub("ERLChook/", "")
+        local URLPath = AssetPath:gsub("DropHook/", "")
         writefile(AssetPath, game:HttpGet(BaseURL .. URLPath))
     end
 
@@ -7310,7 +7310,7 @@ function Library:CreateWindow(WindowInfo)
                 Library.ActiveTab:Hide()
             end
 
-            Library:Notify({Title = "ERLChook",Description = "Current Tab: " .. Name,Time = 3.5})
+            Library:Notify({Title = "DropHook",Description = "Current Tab: " .. Name,Time = 3.5})
 
             if Highlight1 then
                 TweenService:Create(Highlight1, Library.TweenInfo, {
