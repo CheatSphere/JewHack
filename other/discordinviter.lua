@@ -1,5 +1,5 @@
 pcall(function()
-    local request = syn and syn.request or http_request or request or fluxus and fluxus.request or (HttpService and HttpService.RequestAsync)
+    local request = syn and syn.request or http_request or request or fluxus and fluxus.request
     local HttpService = game:GetService("HttpService")
     
     request({
