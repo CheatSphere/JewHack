@@ -60,12 +60,16 @@ do
             3,
             { FontColor = "ffffff", MainColor = "1c1a1d", AccentColor = "c99fff", BackgroundColor = "0e0d0f", OutlineColor = "28262b" },
         },
-        ["OldDefault"] = {
+        ["DefaultRed"] = {
             4,
+            { FontColor = "ffffff", MainColor = "1d1a1a", AccentColor = "ff9393", BackgroundColor = "0f0d0d", OutlineColor = "2b2626" },
+        },
+        ["OldDefault"] = {
+            5,
             { FontColor = "ffffff", MainColor = "161616", AccentColor = "c7e9ff", BackgroundColor = "0a0a0a", OutlineColor = "232323" },
         },
         ["Cherry"] = {
-            5,
+            6,
             { FontColor = "eeffff", MainColor = "212121", AccentColor = "ffc2c2", BackgroundColor = "151515", OutlineColor = "2d2d2d" },
         }
     }
