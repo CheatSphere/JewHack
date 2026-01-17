@@ -426,7 +426,7 @@ local SaveManager = {} do
 
         local section = tab:AddLeftGroupbox("Configuration", "cog")
 
-        section:AddInput("SaveManager_ConfigName",    { Text = "Config name" })
+        section:AddInput("SaveManager_ConfigName",    { Text = "Config Name" })
         section:AddButton("Create Config", function()
             local name = self.Library.Options.SaveManager_ConfigName.Value
 
