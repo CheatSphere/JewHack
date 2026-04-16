@@ -1,5 +1,3 @@
--- theme changes, new default theme, and pcalled some stuff that will ban if used wrong
---2
 local cloneref = (cloneref or clonereference or function(instance: any)
     return instance
 end)
@@ -319,32 +317,36 @@ do
 
         groupbox:AddDropdown("ThemeManager_ThemeList", { Text = "Theme List", Values = ThemesArray, Default = 1 })
         groupbox:AddButton("Set as default", function()
-            self:SaveDefault(self.Library.Options.ThemeManager_ThemeList.Value)
-            self.Library:Notify(
-                string.format("Set default theme to %q", self.Library.Options.ThemeManager_ThemeList.Value)
-            )
-        end)
+            pcall(function()
+                self:SaveDefault(self.Library.Options.ThemeManager_ThemeList.Value)
+                self.Library:Notify(
+                    string.format("Set default theme to %q", self.Library.Options.ThemeManager_ThemeList.Value)
+                )
+            end)
 
-        self.Library.Options.ThemeManager_ThemeList:OnChanged(function()
-            self:ApplyTheme(self.Library.Options.ThemeManager_ThemeList.Value)
+            self.Library.Options.ThemeManager_ThemeList:OnChanged(function()
+                self:ApplyTheme(self.Library.Options.ThemeManager_ThemeList.Value)
+            end)
         end)
 
         --groupbox:AddDivider()
 
         groupbox:AddInput("ThemeManager_CustomThemeName", { Text = "Custom Theme Name" })
         groupbox:AddButton("Create theme", function()
-            local name = self.Library.Options.ThemeManager_CustomThemeName.Value
+            pcall(function()
+                local name = self.Library.Options.ThemeManager_CustomThemeName.Value
 
-            if name:gsub(" ", "") == "" then
-                self.Library:Notify("Invalid theme name (empty)", 2)
-                return
-            end
+                if name:gsub(" ", "") == "" then
+                    self.Library:Notify("Invalid theme name (empty)", 2)
+                    return
+                end
 
-            self:SaveCustomTheme(name)
+                self:SaveCustomTheme(name)
 
-            self.Library:Notify(string.format("Created theme %q", name))
-            self.Library.Options.ThemeManager_CustomThemeList:SetValues(self:ReloadCustomThemes())
-            self.Library.Options.ThemeManager_CustomThemeList:SetValue(nil)
+                self.Library:Notify(string.format("Created theme %q", name))
+                self.Library.Options.ThemeManager_CustomThemeList:SetValues(self:ReloadCustomThemes())
+                self.Library.Options.ThemeManager_CustomThemeList:SetValue(nil)
+            end)
         end)
 
         --groupbox:AddDivider()
@@ -354,44 +356,52 @@ do
             { Text = "Custom Themes", Values = self:ReloadCustomThemes(), AllowNull = true, Default = 1 }
         )
         groupbox:AddButton("Load Theme", function()
-            local name = self.Library.Options.ThemeManager_CustomThemeList.Value
+            pcall(function()
+                local name = self.Library.Options.ThemeManager_CustomThemeList.Value
 
-            self:ApplyTheme(name)
-            self.Library:Notify(string.format("Loaded theme %q", name))
+                self:ApplyTheme(name)
+                self.Library:Notify(string.format("Loaded theme %q", name))
+            end)
         end)
         groupbox:AddButton("Overwrite Theme", function()
-            local name = self.Library.Options.ThemeManager_CustomThemeList.Value
+            pcall(function()
+                local name = self.Library.Options.ThemeManager_CustomThemeList.Value
 
-            self:SaveCustomTheme(name)
-            self.Library:Notify(string.format("Overwrote config %q", name))
+                self:SaveCustomTheme(name)
+                self.Library:Notify(string.format("Overwrote config %q", name))
+            end)
         end)
         groupbox:AddButton("Delete Theme", function()
-            local name = self.Library.Options.ThemeManager_CustomThemeList.Value
+            pcall(function()
+                local name = self.Library.Options.ThemeManager_CustomThemeList.Value
 
-            local success, err = self:Delete(name)
-            if not success then
-                self.Library:Notify("Failed to delete theme: " .. err)
-                return
-            end
+                local success, err = self:Delete(name)
+                if not success then
+                    self.Library:Notify("Failed to delete theme: " .. err)
+                    return
+                end
 
-            self.Library:Notify(string.format("Deleted theme %q", name))
-            self.Library.Options.ThemeManager_CustomThemeList:SetValues(self:ReloadCustomThemes())
-            self.Library.Options.ThemeManager_CustomThemeList:SetValue(nil)
+                self.Library:Notify(string.format("Deleted theme %q", name))
+                self.Library.Options.ThemeManager_CustomThemeList:SetValues(self:ReloadCustomThemes())
+                self.Library.Options.ThemeManager_CustomThemeList:SetValue(nil)
+            end)
         end)
         groupbox:AddButton("Refresh List", function()
             self.Library.Options.ThemeManager_CustomThemeList:SetValues(self:ReloadCustomThemes())
             self.Library.Options.ThemeManager_CustomThemeList:SetValue(nil)
         end)
         groupbox:AddButton("Set as Default", function()
-            if
-                self.Library.Options.ThemeManager_CustomThemeList.Value ~= nil
-                and self.Library.Options.ThemeManager_CustomThemeList.Value ~= ""
-            then
-                self:SaveDefault(self.Library.Options.ThemeManager_CustomThemeList.Value)
-                self.Library:Notify(
-                    string.format("Set default theme to %q", self.Library.Options.ThemeManager_CustomThemeList.Value)
-                )
-            end
+            pcall(function()
+                if
+                    self.Library.Options.ThemeManager_CustomThemeList.Value ~= nil
+                    and self.Library.Options.ThemeManager_CustomThemeList.Value ~= ""
+                then
+                    self:SaveDefault(self.Library.Options.ThemeManager_CustomThemeList.Value)
+                    self.Library:Notify(
+                        string.format("Set default theme to %q", self.Library.Options.ThemeManager_CustomThemeList.Value)
+                    )
+                end
+            end)
         end)
         groupbox:AddButton("Reset Default", function()
             local success = pcall(delfile, self.Folder .. "/themes/default.txt")
