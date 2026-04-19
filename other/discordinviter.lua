@@ -1,3 +1,4 @@
+--// read this if you're retarded: this literally just opens the discord invite in discord
 pcall(function()
     local request = syn and syn.request or http_request or request or fluxus and fluxus.request
     local HttpService = game:GetService("HttpService")
