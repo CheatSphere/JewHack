@@ -9,6 +9,11 @@ end)
 local HttpService: HttpService = cloneref(game:GetService("HttpService"))
 local isfolder, isfile, listfiles = isfolder, isfile, listfiles
 
+makefolder = makefolder or function() end
+writefile = writefile or function() end
+readfile = readfile or function() return "" end
+delfile = delfile or function() end
+
 if typeof(clonefunction) == "function" then
     -- Fix is_____ functions for shitsploits, those functions should never error, only return a boolean.
 
