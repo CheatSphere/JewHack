@@ -5,11 +5,6 @@ local clonefunction = (clonefunction or copyfunction or function(func)
     return func 
 end)
 
-makefolder = makefolder or function() end
-writefile = writefile or function() end
-readfile = readfile or function() return "" end
-delfile = delfile or function() end
-
 local HttpService: HttpService = cloneref(game:GetService("HttpService"))
 local isfolder, isfile, listfiles = isfolder, isfile, listfiles
 
