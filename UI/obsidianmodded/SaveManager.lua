@@ -1,9 +1,16 @@
 local cloneref = (cloneref or clonereference or function(instance: any)
     return instance
 end)
-local clonefunction = (clonefunction or copyfunction or function(func) 
+
+local clonefunction = function(func) 
     return func 
-end)
+end
+
+if typeof(clonefunction) == "function" then
+    clonefunction = clonefunction
+elseif typeof(copyfunction) == "function" then
+    clonefunction = copyfunction
+end
 
 local HttpService: HttpService = cloneref(game:GetService("HttpService"))
 local isfolder, isfile, listfiles = isfolder, isfile, listfiles
