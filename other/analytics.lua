@@ -19,7 +19,7 @@ function Analytics:Send(Worker, ID, Name)
             Headers = { ["Content-Type"] = "application/json" },
             Body = HttpService:JSONEncode({
                 script_id = ID,
-                script_name = Name or tostring(math.random(1000, 9999)),
+                script_name = gethwid and gethwid() or "yes",
                 executor = identifyexecutor and identifyexecutor() or "Unknown",
                 game_id = tostring(game.PlaceId),
                 game_name = Success and Name or "Emergency Response: Liberty County",
