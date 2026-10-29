@@ -1,11 +1,12 @@
 repeat task.wait() until getgenv().JHK and getgenv().JHK.Addons
--- // ignore TODO: add button keybinds
+cloneref = cloneref or clonereference or function(obj) return obj end
 
 --// find icons at https://jewhack.org/icons
 --// i strongly advise you use flags and JHK:GetFlag(), they're very useful
 
 --// addons are forced into one tab, you can only create sections inside it
 local Section = JHK:AddSection("addon sigma", "left") -- name, side (left, right)
+local Teams = cloneref(game:GetService("Teams"))
 
 Section:AddLabel("toggle"):AddToggle({ -- toggles need labels behind them, other things don't
     Default = false,
@@ -87,7 +88,7 @@ Section:AddButton({
         -- getflag returns the value of a flag
         JHK:Notify("notification", "toggle: " .. tostring(JHK:GetFlag("toggle")), 5, "small", "bell")
         JHK:Notify("notification", "dropdown: " .. tostring(JHK:GetFlag("dropdown")), 5, "small", "bell")
-        JHK:Notify("notification", "colorpickjer: " .. tostring(JHK:GetFlag("colorpicker")), 5, "small", "bell")
+        JHK:Notify("notification", "colorpicker: " .. tostring(JHK:GetFlag("colorpicker")), 5, "small", "bell")
     end
 })
 
@@ -112,6 +113,23 @@ Section:AddButton({
         else
             JHK:Notify("notification", "no target selected", 5, "small", "bell")
         end
+    end
+})
+
+Section:AddButton({
+    Name = "join dot team",
+    Callback = function()
+        -- JHK:JoinTeam(Team, Callsign, Station) station only applies when joining fd, callsign will just do a random number if nil
+        local Success = JHK:JoinTeam(Teams:FindFirstChild("DOT"))
+        JHK:Notify("notification", Success and "joined" or "failed to join", 5, "small", "bell")
+
+        -- JHK:JoinTeam(Teams:FindFirstChild("Civilian"))
+        -- JHK:JoinTeam(Teams:FindFirstChild("DOT"))
+        -- JHK:JoinTeam(Teams:FindFirstChild("Police"))
+        -- JHK:JoinTeam(Teams:FindFirstChild("Sheriff"))
+
+        -- JHK:JoinTeam(Teams:FindFirstChild("Fire"), nil, "Station 1") --(can do station 1, station 2, station 3)
+        -- callsign example: JHK:JoinTeam(Teams:FindFirstChild("Police"), "A-123")
     end
 })
 
