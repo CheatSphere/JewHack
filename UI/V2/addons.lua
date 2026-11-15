@@ -108,10 +108,31 @@ Section:AddButton({
     Name = "get target",
     Callback = function()
         local Target = JHK:GetTarget()
+
         if Target then
             JHK:Notify("notification", "target: " .. Target.Name, 5, "small", "bell")
         else
             JHK:Notify("notification", "no target selected", 5, "small", "bell")
+        end
+    end
+})
+
+Section:AddButton({
+    Name = "toggle friendly",
+    Callback = function()
+        local Target = JHK:GetTarget()
+
+        if not Target then
+            JHK:Notify("addon", "no target selected", 5, "small", "bell")
+            return
+        end
+
+        if JHK:IsFriendly(Target) then -- true/false
+            JHK:RemoveFriendly(Target)
+            JHK:Notify("addon", "target is no longer friendly", 5, "small", "bell")
+        else
+            JHK:AddFriendly(Target)
+            JHK:Notify("addon", "target is now friendly!", 5, "small", "bell")
         end
     end
 })
